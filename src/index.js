@@ -1,7 +1,7 @@
 'use strict'
 
 const Alexa = require('alexa-sdk')
-const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
+var https = require('https')
 let response = ''
 
 exports.handler = function (event, context, callback) {
@@ -22,14 +22,27 @@ var handlers = {
 
   // RequestIntent handler
   'RequestIntent': function () {
-    var xhr = new XMLHttpRequest()
-    xhr.open('GET', 'https://api.opendota.com/api/heroes', true)
-    xhr.onreadystatechange = function () {
-      if (this.readyState === 4) {
-        response = JSON.parse(xhr.responseText)
-      }
+    var info = {
+      host: 'api.opendota.com/api/heroes',
+      port: 443,
+      path: '/api/heroes',
+      method: 'GET'
     }
-    xhr.send()
+
+    var req = https.request(info, res => {
+      res.setEncoding('utf8')
+      var returnData = ''
+
+      res.on('data', chunk => {
+        returnData = returnData + chunk
+      })
+
+      res.on('end', () => {
+        response = JSON.parse(returnData)
+      })
+    })
+
+    req.end()
 
     var speechOutput = 'Output is :' + response[getRandomInt() - 1] + '?'
 
