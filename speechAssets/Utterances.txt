@@ -1,0 +1,3 @@
+RequestIntent give me random hero
+RequestIntent another hero
+StopIntent stop
