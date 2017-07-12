@@ -1,3 +1,6 @@
-RequestIntent give me random hero
-RequestIntent another hero
+RequestIntent random any hero
+RequestIntent random any other hero
+RequestSpecificIntent random {AttackType}
+RequestSpecificIntent random another {AttackType}
+RequestSpecificIntent random {AttackType} again
 StopIntent stop
