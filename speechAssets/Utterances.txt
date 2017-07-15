@@ -1,6 +1,9 @@
-RequestIntent random any hero
-RequestIntent random any other hero
-RequestSpecificIntent random {AttackType}
-RequestSpecificIntent random another {AttackType}
-RequestSpecificIntent random {AttackType} again
-StopIntent stop
+AnyRequest random any hero
+AnyRequest random any other hero
+RequestMelee random melee
+RequestMelee random another melee
+RequestMelee random melee again
+RequestRanged random ranged
+RequestRanged random another ranged
+RequestRanged random ranged again
+Stop stop

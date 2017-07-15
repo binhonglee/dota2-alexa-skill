@@ -1,19 +1,16 @@
 {
   "intents": [
     {
-      "intent": "RequestIntent"
+      "intent": "AnyRequest"
     },
     {
-      "intent": "RequestSpecificIntent",
-      "slots": [
-        {
-          "name": "AttackType",
-          "type": "AMAZON.US_STATE"
-        }
-      ]
+      "intent": "RequestMelee"
     },
     {
-      "intent": "StopIntent"
+      "intent": "RequestRanged"
+    },
+    {
+      "intent": "Stop"
     }
   ]
 }

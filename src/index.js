@@ -1,6 +1,4 @@
-'use strict'
-
-const Alexa = require('alexa-sdk')
+var Alexa = require('alexa-sdk')
 
 exports.handler = function (event, context, callback) {
   var alexa = Alexa.handler(event, context)
@@ -8,177 +6,82 @@ exports.handler = function (event, context, callback) {
   alexa.execute()
 }
 
-// Handler for all input
 var handlers = {
-  // LaunchRequest handler
   'LaunchRequest': function () {
-    // Providing users with example of how this is to be used
-    const say = 'Welcome to Dota2 random skill! '
-    // Emit the message
-    this.emit(':ask', say)
+    this.emit('RequestMelee')
   },
 
-  // RequestIntent handler
-  'RequestIntent': function () {
-    var speechOutput = random(0)
-
-    // Emit the message
-    this.emit(':ask', speechOutput)
+  'AnyRequest': function () {
+    getHero(0, (name) => {
+      this.emit(':ask', name)
+    })
   },
 
-  'RequestSpecificIntent': function () {
-    var attackType = this.event.request.intent.slots.AttackType
-    let speechOutput = ''
-
-    if (attackType.value === 'melee') {
-      speechOutput = random(1)
-    } else if (attackType.value === 'ranged') {
-      speechOutput = random(2)
-    } else {
-      speechOutput = random(0)
-    }
-
-    this.emit(':ask', speechOutput)
+  'RequestMelee': function () {
+    getHero(1, (name) => {
+      this.emit(':ask', name)
+    })
   },
 
-  // StopIntent handler
-  'StopIntent': function () {
-    // Tell user "Goodbye"
+  'RequestRanged': function () {
+    getHero(2, (name) => {
+      this.emit(':ask', name)
+    })
+  },
+
+  'Stop': function () {
     this.emit(':tell', 'Enjoy the game!')
   }
 }
 
-function random (num) {
-  if (num === 1) {
-    return melee[Math.floor(Math.random() * melee.length)]
-  } else if (num === 2) {
-    return ranged[Math.floor(Math.random() * ranged.length)]
-  } else {
-    var result = Math.floor(Math.random() * (melee.length + ranged.length))
+var https = require('https')
 
-    if (result < melee.length) {
-      return melee[result]
+function getHero (type, callback) {
+  httpsGet((heroes) => {
+    var position = -1
+    var toCompare = ''
+
+    if (type === 1) {
+      toCompare = 'Melee'
+    } else if (type === 2) {
+      toCompare = 'Ranged'
     } else {
-      return ranged[result - melee.length]
+      callback(heroes[random(heroes.length)].localized_name)
+      return
     }
+
+    do {
+      position = random(heroes.length)
+    } while (heroes[position].attack_type.localeCompare(toCompare) !== 0)
+
+    callback(heroes[position].localized_name)
   }
+  )
 }
 
-var melee = [
-  'Anti-Mage',
-  'Axe',
-  'Bloodseeker',
-  'Earthshaker',
-  'Juggernaut',
-  'Phantom Lancer',
-  'Pudge',
-  'Sand King',
-  'Sven',
-  'Tiny',
-  'Kunkka',
-  'Slardar',
-  'Tidehunter',
-  'Riki',
-  'Beastmaster',
-  'Faceless Void',
-  'Wraith King',
-  'Phantom Assassin',
-  'Dragon Knight',
-  'Clockwerk',
-  'Lifestealer',
-  'Dark Seer',
-  'Omniknight',
-  'Night Stalker',
-  'Broodmother',
-  'Bounty Hunter',
-  'Spectre',
-  'Doom',
-  'Ursa',
-  'Spirit Breaker',
-  'Alchemist',
-  'Lycan',
-  'Brewmaster',
-  'Chaos Knight',
-  'Meepo',
-  'Treant Protector',
-  'Ogre Magi',
-  'Undying',
-  'Nyx Assassin',
-  'Naga Siren',
-  'Slark',
-  'Centaur Warrunner',
-  'Magnus',
-  'Timbersaw',
-  'Bristleback',
-  'Tusk',
-  'Abaddon',
-  'Elder Titan',
-  'Legion Commander',
-  'Ember Spirit',
-  'Earth Spirit',
-  'Underlord',
-  'Terrorblade',
-  'Monkey King'
-]
+function httpsGet (callback) {
+  var options = {
+    host: 'api.opendota.com',
+    path: '/api/heroes',
+    method: 'GET'
+  }
 
-var ranged = [
-  'Bane',
-  'Crystal Maiden',
-  'Drow Ranger',
-  'Mirana',
-  'Morphling',
-  'Shadow Fiend',
-  'Puck',
-  'Razor',
-  'Storm Spirit',
-  'Vengeful Spirit',
-  'Windranger',
-  'Zeus',
-  'Lina',
-  'Lion',
-  'Shadow Shaman',
-  'Witch Doctor',
-  'Lich',
-  'Enigma',
-  'Tinker',
-  'Sniper',
-  'Necrophos',
-  'Warlock',
-  'Queen of Pain',
-  'Venomancer',
-  'Death Prophet',
-  'Pugna',
-  'Templar Assassin',
-  'Viper',
-  'Luna',
-  'Dazzle',
-  'Leshrac',
-  'Nature\'s Prophet',
-  'Clinkz',
-  'Enchantress',
-  'Huskar',
-  'Weaver',
-  'Jakiro',
-  'Batrider',
-  'Chen',
-  'Ancient Apparition',
-  'Gyrocopter',
-  'Invoker',
-  'Silencer',
-  'Outworld Devourer',
-  'Shadow Demon',
-  'Lone Druid',
-  'Rubick',
-  'Disruptor',
-  'Keeper of the Light',
-  'Io',
-  'Visage',
-  'Medusa',
-  'Troll Warlord',
-  'Skywrath Mage',
-  'Techies',
-  'Phoenix',
-  'Oracle',
-  'Winter Wyvern',
-  'Arc Warden'
-]
+  var req = https.request(options, res => {
+    res.setEncoding('utf8')
+    var returnData = ''
+
+    res.on('data', chunk => {
+      returnData = returnData + chunk
+    })
+
+    res.on('end', () => {
+      var pop = JSON.parse(returnData)
+      callback(pop)
+    })
+  })
+  req.end()
+}
+
+function random (size) {
+  return Math.floor(Math.random() * (size))
+}
