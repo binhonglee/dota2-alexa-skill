@@ -1,13 +1,31 @@
 {
   "intents": [
     {
-      "intent": "AnyRequest"
+      "intent": "RequestMeleeCarry"
+    },
+    {
+      "intent": "RequestMeleeSupport"
+    },
+    {
+      "intent": "RequestRangedCarry"
+    },
+    {
+      "intent": "RequestRangedSupport"
+    },
+    {
+      "intent": "RequestCarry"
+    },
+    {
+      "intent": "RequestSupport"
     },
     {
       "intent": "RequestMelee"
     },
     {
       "intent": "RequestRanged"
+    },
+    {
+      "intent": "AnyRequest"
     },
     {
       "intent": "Stop"
