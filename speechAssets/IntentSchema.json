@@ -28,6 +28,9 @@
       "intent": "AnyRequest"
     },
     {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
       "intent": "Stop"
     }
   ]

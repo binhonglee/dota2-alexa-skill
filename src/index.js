@@ -9,7 +9,7 @@ exports.handler = function (event, context, callback) {
 
 var handlers = {
   'LaunchRequest': function () {
-    this.emit(':ask', 'Welcome to Dota 2 Random.')
+    this.emit(':ask', 'Welcome to Dota 2 Random. Say help for help.')
   },
 
   'RequestMeleeCarry': function () {
@@ -17,7 +17,7 @@ var handlers = {
     askingConditions[1] = 0
     askingConditions[2] = true
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'RequestMeleeCarry')
     })
   },
@@ -27,7 +27,7 @@ var handlers = {
     askingConditions[1] = 0
     askingConditions[3] = true
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'RequestMeleeSupport')
     })
   },
@@ -37,7 +37,7 @@ var handlers = {
     askingConditions[1] = 1
     askingConditions[2] = true
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'RequestRangedCarry')
     })
   },
@@ -47,7 +47,7 @@ var handlers = {
     askingConditions[1] = 1
     askingConditions[3] = true
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'RequestRangedSupport')
     })
   },
@@ -56,7 +56,7 @@ var handlers = {
     reset()
     askingConditions[2] = true
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'RequestCarry')
     })
   },
@@ -65,7 +65,7 @@ var handlers = {
     reset()
     askingConditions[3] = true
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'RequestSupport')
     })
   },
@@ -74,7 +74,7 @@ var handlers = {
     reset()
     askingConditions[1] = 0
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'RequestMelee')
     })
   },
@@ -83,15 +83,20 @@ var handlers = {
     reset()
     askingConditions[1] = 1
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'RequestRanged')
     })
+  },
+
+  'AMAZON.HelpIntent': function () {
+    reset()
+    this.emit(':ask', 'You can try saying random any hero, random melee carry or random ranged support for more specific randoming.')
   },
 
   'AnyRequest': function () {
     reset()
     getHero(askingConditions, (name) => {
-      this.emit(':ask', name)
+      this.emit(':tell', name)
       // this.emit(':ask', 'AnyRequest triggered')
     })
   },
