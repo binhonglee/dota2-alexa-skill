@@ -1,27 +1,15 @@
-RequestMeleeCarry random melee carry
-RequestMeleeCarry random another melee carry
-RequestMeleeCarry random melee carry again
-RequestRangedCarry random ranged carry
-RequestRangedCarry random another ranged carry
-RequestRangedCarry random ranged carry again
-RequestMeleeSupport random melee support
-RequestMeleeSupport random another melee support
-RequestMeleeSupport random melee support again
-RequestRangedSupport random ranged support
-RequestRangedSupport random another ranged support
-RequestRangedSupport random ranged support again
-RequestCarry random carry
-RequestCarry random another carry
-RequestCarry random carry again
-RequestSupport random support
-RequestSupport random another support
-RequestSupport random support again
-RequestMelee random melee
-RequestMelee random another melee
-RequestMelee random melee again
-RequestRanged random ranged
-RequestRanged random another ranged
-RequestRanged random ranged again
+RequestIntent random {Category}
+RequestIntent random {Category} hero
+RequestIntent random any {Category}
+RequestIntent random any {Category} hero
+RequestIntent random another {Category}
+RequestIntent random another {Category} hero
+RequestTwoIntent random {Category1} {Category2}
+RequestIntent random {Category1} {Category2} hero
+RequestIntent random any {Category1} {Category2}
+RequestIntent random any {Category1} {Category2} hero
+RequestIntent random another {Category1} {Category2}
+RequestIntent random another {Category1} {Category2} hero
 AnyRequest random any hero
 AnyRequest random any other hero
 Stop stop

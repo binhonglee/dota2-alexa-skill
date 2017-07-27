@@ -1,28 +1,26 @@
 {
   "intents": [
     {
-      "intent": "RequestMeleeCarry"
+      "intent": "RequestIntent",
+      "slot": [
+        {
+          "name": "Category",
+          "type": "CustomSlot"
+        }
+      ]
     },
     {
-      "intent": "RequestMeleeSupport"
-    },
-    {
-      "intent": "RequestRangedCarry"
-    },
-    {
-      "intent": "RequestRangedSupport"
-    },
-    {
-      "intent": "RequestCarry"
-    },
-    {
-      "intent": "RequestSupport"
-    },
-    {
-      "intent": "RequestMelee"
-    },
-    {
-      "intent": "RequestRanged"
+      "intent": "RequestTwoIntent",
+      "slot": [
+        {
+          "name": "Category1",
+          "type": "CustomSlot"
+        },
+        {
+          "name": "Category2",
+          "type": "CustomSlot"
+        }
+      ]
     },
     {
       "intent": "AnyRequest"
