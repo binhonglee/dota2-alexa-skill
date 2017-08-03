@@ -1,15 +1,21 @@
-RequestIntent random {Category}
-RequestIntent random {Category} hero
-RequestIntent random any {Category}
-RequestIntent random any {Category} hero
-RequestIntent random another {Category}
-RequestIntent random another {Category} hero
-RequestTwoIntent random {Category1} {Category2}
-RequestIntent random {Category1} {Category2} hero
-RequestIntent random any {Category1} {Category2}
-RequestIntent random any {Category1} {Category2} hero
-RequestIntent random another {Category1} {Category2}
-RequestIntent random another {Category1} {Category2} hero
+RequestIntent random {Role}
+RequestIntent random {Role} hero
+RequestIntent random any {Role}
+RequestIntent random any {Role} hero
+RequestIntent random another {Role}
+RequestIntent random another {Role} hero
+RequestTwoIntent random {RoleOne} {RoleTwo}
+RequestTwoIntent random {RoleOne} {RoleTwo} hero
+RequestTwoIntent random any {RoleOne} {RoleTwo}
+RequestTwoIntent random any {RoleOne} {RoleTwo} hero
+RequestTwoIntent random another {RoleOne} {RoleTwo}
+RequestTwoIntent random another {RoleOne} {RoleTwo} hero
+RequestThreeIntent random {RoleOne} {RoleTwo} {RoleThree}
+RequestThreeIntent random {RoleOne} {RoleTwo} {RoleThree} hero
+RequestThreeIntent random any {RoleOne} {RoleTwo} {RoleThree}
+RequestThreeIntent random any {RoleOne} {RoleTwo} {RoleThree} hero
+RequestThreeIntent random another {RoleOne} {RoleTwo} {RoleThree}
+RequestThreeIntent random another {RoleOne} {RoleTwo} {RoleThree} hero
 AnyRequest random any hero
 AnyRequest random any other hero
 Stop stop

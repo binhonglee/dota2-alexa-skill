@@ -1,0 +1,10 @@
+melee
+ranged
+carry
+support
+strength
+intelligence
+agility
+nuker
+initiator
+escape

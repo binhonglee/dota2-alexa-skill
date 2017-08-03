@@ -13,7 +13,7 @@ var handlers = {
 
   'RequestIntent': function () {
     var given = []
-    var category = this.event.request.intent.slots.Category
+    var category = this.event.request.intent.slots.Role
     given.push(category)
 
     randomHero(given, (name) => {
@@ -23,10 +23,24 @@ var handlers = {
 
   'RequestTwoIntent': function () {
     var given = []
-    var category1 = this.event.request.intent.slots.Category1
-    var category2 = this.event.request.intent.slots.Category2
+    var category1 = this.event.request.intent.slots.RoleOne
+    var category2 = this.event.request.intent.slots.RoleTwo
     given.push(category1)
     given.push(category2)
+
+    randomHero(given, (name) => {
+      this.emit(':tell', name)
+    })
+  },
+
+  'RequestThreeIntent': function () {
+    var given = []
+    var category1 = this.event.request.intent.slots.RoleOne
+    var category2 = this.event.request.intent.slots.RoleTwo
+    var category3 = this.event.request.intent.slots.RoleThree
+    given.push(category1)
+    given.push(category2)
+    given.push(category3)
 
     randomHero(given, (name) => {
       this.emit(':tell', name)
@@ -56,6 +70,19 @@ function randomHero (categories, callback) {
   var location
 
   httpsGet((heroes) => {
+    var possible = false
+
+    for (var i = 0; i < heroes.length; i++) {
+      if (checkCategory(categories, heroes[i])) {
+        possible = true
+      }
+    }
+
+    if (!possible) {
+      callback('Random failed')
+      return
+    }
+
     do {
       location = random(heroes.length)
     } while (!checkCategory(categories, heroes[location]))
@@ -92,24 +119,16 @@ function random (size) {
 }
 
 function checkCategory (categories, hero) {
-  var i = 0
-
   var hits = false
 
-  while (i < categories.length) {
-    if (categories[i] === hero.primary_attr || categories[i] === hero.attack_type) {
-      hits = true
-    } else {
-      for (var j = 0; j < hero.roles.length; j++) {
-        if (categories[i] === hero.roles[j]) {
-          hits = true
-          break
-        }
+  for (var i = 0; i < categories.length; i++) {
+    for (var j = 0; j < hero.roles.length; j++) {
+      if (categories[i].localeCompare(hero.roles[j]) === 0) {
+        hits = true
       }
     }
 
     if (hits) {
-      i++
       hits = false
     } else {
       return false
