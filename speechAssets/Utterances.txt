@@ -18,4 +18,6 @@ RequestThreeIntent random another {RoleOne} {RoleTwo} {RoleThree}
 RequestThreeIntent random another {RoleOne} {RoleTwo} {RoleThree} hero
 AnyRequest random any hero
 AnyRequest random any other hero
+AnyRequest random another
+AnyRequest random another hero
 Stop stop
