@@ -13,7 +13,7 @@ var handlers = {
 
   'RequestIntent': function () {
     var given = []
-    var category = this.event.request.intent.slots.Category
+    var category = this.event.request.intent.slots.Role.value.toString()
     given.push(category)
 
     randomHero(given, (name) => {
@@ -23,10 +23,24 @@ var handlers = {
 
   'RequestTwoIntent': function () {
     var given = []
-    var category1 = this.event.request.intent.slots.Category1
-    var category2 = this.event.request.intent.slots.Category2
+    var category1 = this.event.request.intent.slots.RoleOne.value.toString()
+    var category2 = this.event.request.intent.slots.RoleTwo.value.toString()
     given.push(category1)
     given.push(category2)
+
+    randomHero(given, (name) => {
+      this.emit(':tell', name)
+    })
+  },
+
+  'RequestThreeIntent': function () {
+    var given = []
+    var category1 = this.event.request.intent.slots.RoleOne.value.toString()
+    var category2 = this.event.request.intent.slots.RoleTwo.value.toString()
+    var category3 = this.event.request.intent.slots.RoleThree.value.toString()
+    given.push(category1)
+    given.push(category2)
+    given.push(category3)
 
     randomHero(given, (name) => {
       this.emit(':tell', name)
@@ -42,7 +56,7 @@ var handlers = {
   },
 
   'AMAZON.HelpIntent': function () {
-    this.emit(':ask', 'You can try saying random any hero, random melee carry or random ranged support for more specific randoming.')
+    this.emit(':ask', 'You can try saying random any hero, random melee carry or random ranged support.')
   },
 
   'Stop': function () {
@@ -56,6 +70,21 @@ function randomHero (categories, callback) {
   var location
 
   httpsGet((heroes) => {
+    var possible = false
+    var i = 0
+
+    while (possible === false && i < heroes.length) {
+      if (checkCategory(categories, heroes[i])) {
+        possible = true
+      }
+      i++
+    }
+
+    if (!possible) {
+      callback('Random failed')
+      return
+    }
+
     do {
       location = random(heroes.length)
     } while (!checkCategory(categories, heroes[location]))
@@ -92,16 +121,14 @@ function random (size) {
 }
 
 function checkCategory (categories, hero) {
-  var i = 0
-
   var hits = false
 
-  while (i < categories.length) {
-    if (categories[i] === hero.primary_attr || categories[i] === hero.attack_type) {
+  for (var i = 0; i < categories.length; i++) {
+    if (categories[i].toLowerCase().localeCompare(hero.attack_type.toLowerCase()) === 0 || categories[i].toLowerCase().substring(0, 3).localeCompare(hero.primary_attr) === 0) {
       hits = true
     } else {
       for (var j = 0; j < hero.roles.length; j++) {
-        if (categories[i] === hero.roles[j]) {
+        if (categories[i].toLowerCase().localeCompare(hero.roles[j].toLowerCase()) === 0) {
           hits = true
           break
         }
@@ -109,7 +136,6 @@ function checkCategory (categories, hero) {
     }
 
     if (hits) {
-      i++
       hits = false
     } else {
       return false

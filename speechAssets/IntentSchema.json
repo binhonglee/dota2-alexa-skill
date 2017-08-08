@@ -2,23 +2,40 @@
   "intents": [
     {
       "intent": "RequestIntent",
-      "slot": [
+      "slots": [
         {
-          "name": "Category",
-          "type": "CustomSlot"
+          "name": "Role",
+          "type": "ROLE_TYPES"
         }
       ]
     },
     {
       "intent": "RequestTwoIntent",
-      "slot": [
+      "slots": [
         {
-          "name": "Category1",
-          "type": "CustomSlot"
+          "name": "RoleOne",
+          "type": "ROLE_TYPES"
         },
         {
-          "name": "Category2",
-          "type": "CustomSlot"
+          "name": "RoleTwo",
+          "type": "ROLE_TYPES"
+        }
+      ]
+    },
+    {
+      "intent": "RequestThreeIntent",
+      "slots": [
+        {
+          "name": "RoleOne",
+          "type": "ROLE_TYPES"
+        },
+        {
+          "name": "RoleTwo",
+          "type": "ROLE_TYPES"
+        },
+        {
+          "name": "RoleThree",
+          "type": "ROLE_TYPES"
         }
       ]
     },

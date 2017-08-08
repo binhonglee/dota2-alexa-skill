@@ -1,4 +1,0 @@
-melee
-ranged
-carry
-support
