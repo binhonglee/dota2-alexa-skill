@@ -11,7 +11,7 @@ install:
   - npm install -g codecov
   - npm install -g istanbul
 script:
-  - standard src/
+  - npm install -g standard && standard src/ && npm uninstall -g standard
   - istanbul cover test/testflow.js
   - codecov
 env:
