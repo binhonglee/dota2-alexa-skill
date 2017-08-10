@@ -6,14 +6,18 @@
   "dependencies": {
     "alexa-sdk": "^1.0.7"
   },
+  "scripts": {
+    "test": "npm install -g standard && standard && node test/testflow.js && npm uninstall -g standard"
+  },
   "author": "binhonglee",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/binhonglee/dota2-alexa-skill.git"
+    "url": "git+ssh://git@github.com/binhonglee/dota2-random.git"
   },
   "bugs": {
-    "url": "https://github.com/binhonglee/dota2-alexa-skill/issues"
+    "url": "https://github.com/binhonglee/dota2-random/issues"
   },
-  "homepage": "https://github.com/binhonglee/dota2-alexa-skill#readme"
+  "homepage": "https://github.com/binhonglee/dota2-random#readme",
+  "devDependencies": {}
 }

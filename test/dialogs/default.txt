@@ -1,0 +1,7 @@
+LaunchRequest
+AMAZON.HelpIntent
+AnyRequest
+RequestIntent Role=agility
+RequestTwoIntent RoleOne=melee RoleTwo=ranged
+RequestThreeIntent RoleOne=melee RoleTwo=intelligence RoleThree=support
+Stop

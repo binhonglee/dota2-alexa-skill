@@ -81,7 +81,8 @@ function randomHero (categories, callback) {
     }
 
     if (!possible) {
-      callback('Random failed')
+      var errorMessage = 'Random failed'
+      callback(errorMessage)
       return
     }
 

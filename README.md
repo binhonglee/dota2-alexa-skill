@@ -1,14 +1,16 @@
 # Dota 2 Random - Alexa Skill
 
-Skill is now available from the [Alexa Skill Store](https://www.amazon.com/binhonglee-Dota2-Random/dp/B073W4GDLS)!
+[![Build Status](https://travis-ci.org/binhonglee/dota2-random.svg?branch=master)](https://travis-ci.org/binhonglee/dota2-random) [![Test Coverage](https://codeclimate.com/github/binhonglee/dota2-random/badges/coverage.svg)](https://codeclimate.com/github/binhonglee/dota2-random/coverage) [![Dependency Status](https://gemnasium.com/badges/github.com/binhonglee/dota2-random.svg)](https://gemnasium.com/github.com/binhonglee/dota2-random)
 
-#### Dependency
-- alexa-sdk
+## Skill is now available from the [Alexa Skill Store](https://www.amazon.com/binhonglee-Dota2-Random/dp/B073W4GDLS)!
+
+### Dependency
 - node.js
+- alexa-sdk
 
-## Documentations
+### Documentations
 
-### Intents
+#### Intents
 
 | Intents | Description |
 |:---------|:------------|
@@ -20,7 +22,7 @@ Skill is now available from the [Alexa Skill Store](https://www.amazon.com/binho
 | `AMAZON.HelpIntent` | Provide examples on how to use the skill |
 | `Stop` | Stop the skill |
 
-### ROLE_TYPES (Custom slot)
+#### ROLE_TYPES (Custom slot)
 - melee
 - ranged
 - carry
