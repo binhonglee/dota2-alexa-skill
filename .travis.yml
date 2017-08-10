@@ -6,6 +6,11 @@ node_js:
   - "5"
   - "4"
   - "lts/*"
-script: npm test
+install:
+  - npm install -g codecov
+script:
+  - npm test
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov
 env:
   CODECLIMATE_REPO_TOKEN: a174b03227cdc953c831f45bebcf0af357ec1b8a4b8477f36444c16f084a409f
