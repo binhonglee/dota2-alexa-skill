@@ -1,6 +1,7 @@
 # Dota 2 Random - Alexa Skill
 
-[![Build Status](https://travis-ci.org/binhonglee/dota2-random.svg?branch=master)](https://travis-ci.org/binhonglee/dota2-random) [![Test Coverage](https://codeclimate.com/github/binhonglee/dota2-random/badges/coverage.svg)](https://codeclimate.com/github/binhonglee/dota2-random/coverage) [![Dependency Status](https://gemnasium.com/badges/github.com/binhonglee/dota2-random.svg)](https://gemnasium.com/github.com/binhonglee/dota2-random)
+[![Build Status](https://travis-ci.org/binhonglee/dota2-random.svg?branch=master)](https://travis-ci.org/binhonglee/dota2-random) [![codecov](https://codecov.io/gh/binhonglee/dota2-random/branch/master/graph/badge.svg)](https://codecov.io/gh/binhonglee/dota2-random)
+ [![Dependency Status](https://gemnasium.com/badges/github.com/binhonglee/dota2-random.svg)](https://gemnasium.com/github.com/binhonglee/dota2-random)
 
 ## Skill is now available from the [Alexa Skill Store](https://www.amazon.com/binhonglee-Dota2-Random/dp/B073W4GDLS)!
 

@@ -6,6 +6,13 @@ node_js:
   - "5"
   - "4"
   - "lts/*"
-script: npm test
+install:
+  - npm install
+  - npm install -g codecov
+  - npm install -g istanbul
+script:
+  - npm install -g standard && standard src/ && npm uninstall -g standard
+  - istanbul cover test/testflow.js
+  - codecov
 env:
   CODECLIMATE_REPO_TOKEN: a174b03227cdc953c831f45bebcf0af357ec1b8a4b8477f36444c16f084a409f
