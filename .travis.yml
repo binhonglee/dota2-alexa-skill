@@ -9,9 +9,10 @@ node_js:
 install:
   - npm install
   - npm install -g codecov
+  - npm install -g istanbul
 script:
-  - npm test
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - standard src/
+  - istanbul cover test/testflow.js
   - codecov
 env:
   CODECLIMATE_REPO_TOKEN: a174b03227cdc953c831f45bebcf0af357ec1b8a4b8477f36444c16f084a409f
