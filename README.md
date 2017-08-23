@@ -1,9 +1,11 @@
-# Dota 2 Random - Alexa Skill
+# Dota 2 Random
 
 [![Build Status](https://travis-ci.org/binhonglee/dota2-random.svg?branch=master)](https://travis-ci.org/binhonglee/dota2-random) [![codecov](https://codecov.io/gh/binhonglee/dota2-random/branch/master/graph/badge.svg)](https://codecov.io/gh/binhonglee/dota2-random)
  [![Dependency Status](https://gemnasium.com/badges/github.com/binhonglee/dota2-random.svg)](https://gemnasium.com/github.com/binhonglee/dota2-random)
 
-## Skill is now available from the [Alexa Skill Store](https://www.amazon.com/binhonglee-Dota2-Random/dp/B073W4GDLS)!
+ [<img src="./asset/badge.png" alt="Works with Amazon Alexa" style="width: 200px;"/>](https://www.amazon.com/binhonglee-Dota2-Random/dp/B073W4GDLS)
+
+## Skill is now available at the [Alexa Skill Store](https://www.amazon.com/binhonglee-Dota2-Random/dp/B073W4GDLS)!
 
 ### Dependency
 - node.js
@@ -34,3 +36,6 @@
 - nuker
 - initiator
 - escape
+
+### Credit
+- [test/testflow.js](./test/testflow.js) credit to [alexa/alexa-cookbook](https://github.com/alexa/alexa-cookbook/blob/master/testing/TestFlow/testflow.js)
