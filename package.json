@@ -4,7 +4,8 @@
   "description": "Provides a random hero",
   "main": "index.js",
   "dependencies": {
-    "alexa-sdk": "^1.0.7"
+    "alexa-sdk": "^1.0.25",
+    "ask-sdk": "^2.1.0"
   },
   "scripts": {
     "test": "node test/testflow.js testDialogs.txt"
